@@ -1,9 +1,13 @@
+<!-- 
+基础示例 简单的渲染用法
+包含 标签，props，slot以及createElement和点击事件
+ -->
 <script>
 	export default {
 		name: 'wii-first',
 		data() {
 			return {
-				msg: '我是变化前的'
+				msg: 0
 			}
 		},
 		props: {
@@ -14,31 +18,37 @@
 		},
 		render: function (createElement) {
 			this.$slots.subtitle = this.$slots.subtitle || []
-			console.log(this.$children)
 	    return createElement(
 	      'h' + this.level,   // tag name 标签名称
+	      {
+	      	class: 'wii-first'
+	      },
 	      // this.$slots.default, // 子组件中的slot 单个传递
 	      // this.$slots.subtitle,
 	      [
-	      	this.msg,
+	      	'第一个组件, ',
 	      	...this.$slots.default, // 具名slots传递 此处也可以用children来代替
 	      	...this.$slots.subtitle,
+	      	'，此处是data的值: ',
+	      	this.msg,
 	      	createElement('button', {
 	      		on: {
 					    click: this.clickHandler
 					  },
-	      	}, '按钮')
+	      	}, '点我改变内部data值')
 	      ]
 	    )
 	  },
 	  methods: {
 	  	clickHandler() {
-	  		this.msg = '变化以后'
+	  		this.msg = Math.ceil(Math.random()*1000)
 	  	}
 	  }
 	}
 </script>
 
 <style>
-	
+	.wii-first{
+		line-height: 1;
+	}
 </style>
