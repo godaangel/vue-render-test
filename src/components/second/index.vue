@@ -11,6 +11,12 @@
 			
 		},
 		render: function (createElement) {
+			// 等价于
+			// <div id="second" class="wii-second blue-color" style="color: green;" @click="clickHandler">
+			// 	我是第二个组件测试, 点我触发组件内部click和外部定义的@click.native事件。
+			// 	<div>{{myProp}}</div>
+			// 	<button @click="buttonClick">触发emit</button>
+			// </div>
 	    return createElement(
 	      'div',
 	      {
@@ -30,15 +36,18 @@
   				style: {
   					color: 'green'
   				},
-  				//【attrs】正常的 HTML 特性
+  				//【attrs】正常的 HTML 特性, id、title、align等，不支持class，原因可能是上面能配置class[仅猜测]
+  				// 等同于DOM的 Attribute
   				attrs: {
-				    id: 'second'
+				    id: 'second',
+				    title: '测试'
 				  },
 				  // 【props】组件 props，如果createElement定义的第一个参数是组件，则生效，此处定义的数据将被传到组件内部
 				  props: {
 				    myProp: 'bar'
 				  },
-				  // DOM 属性
+				  // DOM 属性 如 value, innerHTML, innerText等, 是这个DOM元素作为对象, 其附加的内容
+				  // 等同于DOM的 Property
 				  // domProps: {
 				  //   innerHTML: 'baz'
 				  // },
@@ -72,7 +81,7 @@
 	  		console.log('我点击了第二个组件，这是组件内部触发的事件')
 	  	},
 	  	buttonClick(e) {
-	  		e.stopPropagation() // 阻止事件冒泡
+	  		e.stopPropagation() // 阻止事件冒泡 等价于 click.stop
 	  		console.log('我点击了第二个组件的button，将会通过emit触发外部的自定义事件')
 	  		this.$emit('on-click-button', e)
 	  	}

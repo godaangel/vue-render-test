@@ -3,6 +3,8 @@
     <wii-first level="1">我是标题 <span style="font-size: 18px;" slot="subtitle">我是subtitle</span></wii-first>
     <wii-second @click.native="nativeClick" @on-click-button="clickButton"></wii-second>
     <wii-third></wii-third>
+    <wii-forth></wii-forth>
+    <wii-jsx></wii-jsx>
   </div>
 </template>
 
@@ -10,16 +12,20 @@
 import WiiFirst from './components/first/index.vue'
 import WiiSecond from './components/second/index.vue'
 import WiiThird from './components/third/index.vue'
+import WiiForth from './components/forth/index.vue'
+import WiiJsx from './components/jsx/index.vue'
 export default {
   name: 'app',
   components: {
     WiiFirst,
     WiiSecond,
-    WiiThird
+    WiiThird,
+    WiiForth,
+    WiiJsx
   },
-  data () {
+  data() {
     return {
-      
+
     }
   },
   methods: {
