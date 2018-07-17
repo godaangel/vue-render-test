@@ -33,8 +33,8 @@
 	      // this.$slots.subtitle,
 	      [
 	        '第一个组件, ',
-	        ...this.$slots.default, // 具名slots传递 此处也可以用children来代替
-	        ...this.$slots.subtitle,
+	        ...this.$slots.default, // 默认slots传递
+					...this.$slots.subtitle, // 具名slots传递
 	        '，此处是data的值: ',
 	        this.msg,
 	        createElement('button', {
