@@ -1,5 +1,5 @@
 <!-- 
-comp1
+comp2
  -->
 <script>
 	export default {
